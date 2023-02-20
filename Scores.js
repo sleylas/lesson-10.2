@@ -23,7 +23,7 @@ const students = [
         { "name": "Varvara", "score": 0, "date": "2022-10-01" },
         { "name": "Tanya", "score": 0, "date": "2022-10-11" }
     ]
-]
+];
 
 function calculateGroupScore(group) {
     let bestStudent = {
@@ -31,7 +31,11 @@ function calculateGroupScore(group) {
     };
 
     group.forEach(student => {
-        if (student.score > bestStudent.score) {
+        if (student.score === bestStudent.score) {
+            if (+new Date(student.date) < +new Date(bestStudent.date)) {
+                bestStudent = student;
+            }
+        } else if (student.score > bestStudent.score) {
             bestStudent = student;
         }
     });
@@ -42,6 +46,7 @@ function calculateGroupScore(group) {
 function calculateGroupsScore(groups) {
     let bestStudentInGroups = {
         score: 0,
+
     };
 
     groups.forEach(group => {
@@ -55,17 +60,25 @@ function calculateGroupsScore(groups) {
     return bestStudentInGroups;
 }
 
-console.log("calculateGroupsScore ALL: ", calculateGroupsScore(students));
+function printTheBest(best, message_success, message_not_found) {
+    if (best.score !== 0) {
+        console.log(message_success, best.name);
+    } else {
+        console.log(message_not_found);
+    }
+}
 
-console.log("calculateGroupScore 1: ", calculateGroupScore(students[0]));
-console.log("calculateGroupScore 2: ", calculateGroupScore(students[1]));
-console.log("calculateGroupScore 3: ", calculateGroupScore(students[2]));
+printTheBest(calculateGroupsScore(students), "Congrats!!! You are the best student among All groups:", "Vo vsex qruppax net luchshego");
+
+printTheBest(calculateGroupScore(students[0]), "Congrats!!! You are the best student among group 1: ", "No best student among group 1");
+printTheBest(calculateGroupScore(students[1]), "Congrats!!! You are the best student among group 2: ", "No best student among group 2");
+printTheBest(calculateGroupScore(students[2]), "Congrats!!! You are the best student among group 3", "No best student among group 3");
 
 /*
     calculateGroupsScore ALL:  { name: 'Ivan', score: 35, date: '2022-10-11' }
     
     calculateGroupScore 1:  { name: 'Ivan', score: 35, date: '2022-10-11' }
-    calculateGroupScore 2:  { name: 'Natalia', score: 25, date: '2022-10-10' }
+    calculateGroupScore 2:  { name: 'Marina', score: 25, date: '2022-10-01' }
     calculateGroupScore 3:  { score: 0 }
 */
 
