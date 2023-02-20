@@ -1,0 +1,19 @@
+{
+    "name": "10.2",
+    "version": "1.0.0",
+    "description": "",
+    "main": "Scores.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "jest",
+        "url": "git+https://github.com/sleylas/10.2.git"
+    },
+    "author": "LS",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/sleylas/10.2/issues"
+    },
+    "homepage": "https://github.com/sleylas/10.2#readme"
+}
